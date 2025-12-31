@@ -125,8 +125,8 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  @HostListener('window:pagehide', ['$event'])
+@HostListener('window:beforeunload')
+@HostListener('window:pagehide')
   registrarSalida(): void {
     clearInterval(this.intervaloActualizacion);
     if (this.codigoReporteTiempoPagina == null) return;

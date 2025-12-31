@@ -96,7 +96,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   Listado(): void {
     this.Servicio.Listado().subscribe({
       next: (Respuesta) => {
-
         if (Respuesta && Respuesta.data && Respuesta.data.length > 0) {
           // Existe el navbar, usar datos existentes
           this.Datos = Respuesta.data[0];
@@ -350,7 +349,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
+  onResize(event: Event) {
     this.verificarVista();
   }
 

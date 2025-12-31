@@ -26,8 +26,8 @@
             <div class="col-md-3">
                 <div class="mb-4 position-relative">
                     <img [src]="footerData.UrlLogo || 'logo-white.png'" alt="Promesse de Dios" height="60">
-                    <button  *ngIf="modoEdicion && Permiso.TienePermiso('Footer', 'SubirImagen')" class="btn btn-sm btn-light position-absolute edit-button"
-                        style="top: 0; right: 0;">
+                    <button *ngIf="modoEdicion && Permiso.TienePermiso('Footer', 'SubirImagen')"
+                        class="btn btn-sm btn-light position-absolute edit-button" style="top: 0; right: 0;">
                         <label for="logoUpload" style="margin-bottom: 0; cursor: pointer;">
                             <i class="bi bi-image"></i>
                         </label>
@@ -138,7 +138,7 @@
                     <div class="d-flex justify-content-center position-relative gap-1">
                         <a *ngFor="let red of RedSocial" [href]="red.Link" target="_blank" rel="noopener noreferrer"
                             class="position-relative d-inline-block">
-                            <img [src]="red.Imagenes[0]?.UrlImagen || ''" [alt]="red.NombreRedSocial" width="35"
+                            <img [src]="red.Imagenes?.[0]?.UrlImagen ?? ''" [alt]="red.NombreRedSocial" width="35"
                                 height="35" (click)="ReportarRedSocial(red.CodigoRedSocial)" />
                             <!-- Botón cámara -->
                             <label *ngIf="Permiso.TienePermiso('RedSocialImagen', 'SubirImagen')"
@@ -305,8 +305,11 @@
                         <div class="d-flex justify-content-center position-relative gap-1">
                             <a *ngFor="let red of RedSocial" [href]="red.Link" target="_blank" rel="noopener noreferrer"
                                 class="position-relative d-inline-block">
-                                <img [src]="red.Imagenes[0]?.UrlImagen || ''" [alt]="red.NombreRedSocial" width="25"
-                                    height="25" />
+                                <ng-container *ngIf="red.Imagenes && red.Imagenes.length > 0">
+                                    <img [src]="red.Imagenes[0].UrlImagen" [alt]="red.NombreRedSocial" width="35"
+                                        height="35" (click)="ReportarRedSocial(red.CodigoRedSocial)" />
+                                </ng-container>
+
                                 <!-- Botón cámara -->
                                 <label *ngIf="Permiso.TienePermiso('RedSocialImagen', 'SubirImagen')"
                                     class="position-absolute bottom-0 end-0 bg-white rounded-circle d-flex align-items-center justify-content-center"

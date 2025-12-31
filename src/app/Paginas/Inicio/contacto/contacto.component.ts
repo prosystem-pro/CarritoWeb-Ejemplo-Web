@@ -29,7 +29,8 @@ export class ContactoComponent implements OnInit {
   private Url = `${Entorno.ApiUrl}`;
   private NombreEmpresa = `${Entorno.NombreEmpresa}`;
 
-  ContactanosPortada!: ContactanosPortada;
+  ContactanosPortada: ContactanosPortada = {} as ContactanosPortada;
+
   MapaSeguro!: SafeResourceUrl;
   RedSocial: any[] = [];
   errorMessage: string = '';
